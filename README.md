@@ -6,10 +6,25 @@ A resource watcher allows you to watch a resource for any changes. This means yo
 
 ## Installation
 
-To install Resource Watcher add it to the `requires` key of your `composer.json` file.
+To install this fork of Resource Watcher edit `composer.json` file.
 
+1) Add the VCS fork to the repositories key.
 ```
+"repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/shopapps/resource-watcher"
+        }
+    ],
+```
+
+2) add the package to the "require" opject
+```
+"require": {
+...
 "jasonlewis/resource-watcher": "1.2.*"
+...
+}
 ```
 
 Then update your project with `composer update`.
