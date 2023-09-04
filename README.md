@@ -22,7 +22,7 @@ To install this fork of Resource Watcher edit `composer.json` file.
 ```
 "require": {
 ...
-"jasonlewis/resource-watcher": "1.2.*"
+"jasonlewis/resource-watcher": "1.3.*"
 ...
 }
 ```
