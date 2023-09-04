@@ -104,7 +104,7 @@ $watcher->start(1000000, null, function($watcher) {
 
 ## Framework Integration
 
-### Laravel 4 and Laravel 5
+### Laravel
 
 Included is a service provider for the Laravel framework. This service provider will bind an instance of `JasonLewis\ResourceWatcher\Watcher` to the application container under the `watcher` key.
 
