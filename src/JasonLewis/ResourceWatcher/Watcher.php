@@ -46,28 +46,36 @@ class Watcher
     /**
      * Register a resource to be watched.
      *
-     * @param  string  $resource
+     * @param  string|array $resources
      * @return \JasonLewis\ResourceWatcher\Listener
      */
-    public function watch($resource)
+    public function watch($resources)
     {
-        if (! $this->files->exists($resource)) {
-            throw new RuntimeException('Resource must exist before you can watch it.');
-        } elseif ($this->files->isDirectory($resource)) {
-            $resource = new DirectoryResource(new SplFileInfo($resource), $this->files);
-
-            $resource->setupDirectory();
-        } else {
-            $resource = new FileResource(new SplFileInfo($resource), $this->files);
+        if (!is_array($resources)) {
+            $resources = array($resources);
         }
 
         // The listener gives users the ability to bind listeners on the events
         // created when watching a file or directory. We'll give the listener
         // to the tracker so the tracker can fire any bound listeners.
         $listener = new Listener;
-
-        $this->tracker->register($resource, $listener);
-
+        
+        foreach($resources as $resource)
+        {
+            if (! $this->files->exists($resource)) {
+                throw new RuntimeException('Resource must exist before you can watch it.');
+            } elseif ($this->files->isDirectory($resource)) {
+                $resource = new DirectoryResource(new SplFileInfo($resource), $this->files);
+    
+                $resource->setupDirectory();
+            } else {
+                $resource = new FileResource(new SplFileInfo($resource), $this->files);
+            }
+    
+            
+    
+            $this->tracker->register($resource, $listener);
+        }
         return $listener;
     }
 
